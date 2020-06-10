@@ -1,0 +1,21 @@
+{
+  "source": [
+    "aws.config"
+  ],
+  "detail-type": [
+    "Config Configuration Item Change"
+  ],
+  "detail": {
+    "messageType": [
+      "ConfigurationItemChangeNotification"
+    ],
+   # 이게 룰 상태가 아니라 룰에대해 리소스가 등록되는 상태..!! 띠용
+    "configurationItemDiff": {
+      "changeType": [
+        "CREATE",
+        "UPDATE",
+        "DELETE"
+      ]
+    }
+  }
+}

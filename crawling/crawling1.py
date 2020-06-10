@@ -1,0 +1,1 @@
+http://whois.kisa.or.kr/openapi/whois.jsp?query=IP주소&key=발급받은KEY값&answer=[xml,json]

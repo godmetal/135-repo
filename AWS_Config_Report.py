@@ -158,7 +158,8 @@ def sheetOne(descConfigRulePgr):
 #Sheet 2 for Evaluated resources - 평가된 리소스 현황
 def sheetTwo():
     ws = wb.create_sheet('Evaluated Resources')
-    discovered_rsc = client.get_discovered_resource_counts()
+    discovered_rsc = client.get_disco
+    vered_resource_counts()
     global column_num
     column_num = 3
     ws.merge_cells('A1:C1')
@@ -321,8 +322,8 @@ def sheetFour(descConfigRulePgr, compDetailPgr):
     excelColName = ['Config 규칙명', '설명', '충족', '불충족', '합계']
     writeColName(excelColName,2, ws)
     ws.row_dimensions[1].height = 25
-    ws.column_dimensions['A'].width = 28
-    ws.column_dimensions['B'].width = 35
+    ws.column_dimensions['A'].width = 20
+    ws.column_dimensions['B'].width = 33
     ws.column_dimensions['C'].width = 5
     ws.column_dimensions['D'].width = 7
     ws.column_dimensions['E'].width = 5
@@ -422,7 +423,7 @@ print('creating excel file..')
 
 #aws programmatic login
 eventLoop = asyncio.get_event_loop()
-###fortest eventLoop.run_until_complete(makeConfigFile())
+eventLoop.run_until_complete(makeConfigFile())
 
 #create config client
 client = boto3.client('config')
@@ -498,7 +499,7 @@ finally:
     wb.Close(False)
     excel.Quit()
 
-###fortest os.remove(os.path.abspath("AWS_Config_Report2.xlsx"))
+os.remove(os.path.abspath("aws-config-report-temp.xlsx"))
 ###fortest os.remove(os.environ['USERPROFILE'] + r'\.aws\credentials')
 ###fortest os.remove(os.environ['USERPROFILE'] + r'\.aws\config')
 ###fortest os.rmdir(os.environ['USERPROFILE'] + r'\.aws')

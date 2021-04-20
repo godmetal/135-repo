@@ -75,6 +75,7 @@ awsrsc={
     'AWS::AutoScaling::AutoScalingGroup': 'EC2 오토 스케일링 리소스',
     'AWS::CodeBuild::Project':'AWS CodeBuild가 사용자의 소스코드를 어떻게 빌드할지 구성하는 프로젝트 리소스',
     'AWS::RDS::DBInstance':'Amazon RDS DB 보안그룹 리소스'
+
 }
 
 # Write Column Name
@@ -158,8 +159,7 @@ def sheetOne(descConfigRulePgr):
 #Sheet 2 for Evaluated resources - 평가된 리소스 현황
 def sheetTwo():
     ws = wb.create_sheet('Evaluated Resources')
-    discovered_rsc = client.get_disco
-    vered_resource_counts()
+    discovered_rsc = client.get_discovered_resource_counts()
     global column_num
     column_num = 3
     ws.merge_cells('A1:C1')
@@ -393,7 +393,7 @@ async def mk_raw_data(configrulename, desc, compDetailPgr):
             excelData = []
             excelData.append(user['EvaluationResultIdentifier']['EvaluationResultQualifier']['ConfigRuleName'])
             excelData.append(user['EvaluationResultIdentifier']['EvaluationResultQualifier']['ResourceType'])
-            excelData.append(str(user['EvaluationResultIdentifier']['OrderingTimestamp'])[:19])
+            excelData.append(str(user['ConfigRuleInvokedTime'])[:19])
             username = usernameDic.get(user['EvaluationResultIdentifier']['EvaluationResultQualifier']['ResourceId'])
             if not username:
                 excelData.append('N/A')
@@ -502,7 +502,7 @@ finally:
 os.remove(os.path.abspath("aws-config-report-temp.xlsx"))
 ###fortest os.remove(os.environ['USERPROFILE'] + r'\.aws\credentials')
 ###fortest os.remove(os.environ['USERPROFILE'] + r'\.aws\config')
-###fortest os.rmdir(os.environ['USERPROFILE'] + r'\.aws')
+###fortest os.rmdir(os.environ['USERPROFILE'] + r'\.aws'\config'))
 
 print("Automatically closing...")
 ###########################################################################################
